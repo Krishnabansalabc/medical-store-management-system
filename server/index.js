@@ -19,6 +19,13 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 
+app.get("/",(req,res)=>{
+    res.json({
+        "hello": "I am happy to deploy my application"
+    })
+})
+
+
 app.get('/api/users/auth',auth,(req,res)=>{
     res.status(200).json({
         _id:req._id,
