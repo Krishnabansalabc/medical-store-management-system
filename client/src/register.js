@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { registerUser } from '../../actions/user_actions';
+import { registerUser } from './actions/user_actions';
 import { connect } from 'react-redux';
 
 export class Register extends Component {
@@ -58,12 +58,10 @@ export class Register extends Component {
     
 
     displayErrors = errors=>
-        errors.map((error, i)=><p key = {i}>{error}</p>)
+        this.state.errors.map((error,i)=><p key = {i}>{error}</p>)
 
 
     isFormValid = ()=>{
-        let errors = [];
-        let error="";
         if(this.isFormEmpty(this.state)){
             this.setState({
                 errors:this.state.errors.concat( 'Kindly fill all fields.' )
@@ -73,7 +71,7 @@ export class Register extends Component {
                 {
                     errors:this.state.errors.concat("Password Should have alteast 6 characters")
                 })
-        }else if(this.state.password != this.state.passwordConfirmation){
+        }else if(this.state.password !== this.state.passwordConfirmation){
             this.setState(
                 {
                     errors:this.state.errors.concat("Password Mismatched")

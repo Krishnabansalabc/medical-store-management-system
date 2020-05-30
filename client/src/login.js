@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loginUser } from '../../actions/user_actions';
+import { loginUser } from './actions/user_actions';
 import { Link } from 'react-router-dom';
 
-class RegisterLogin extends Component {
+class Login extends Component {
 
     state = {
         email:"",
@@ -28,7 +28,7 @@ class RegisterLogin extends Component {
             this.props.dispatch(loginUser(dataToSubmit))
             .then(response =>{
                 if(response.payload.loginSuccess){
-                    this.props.history.push('/')
+                    this.props.history.push('/home')
                 }else{
                     this.setState({
                         errors:this.state.errors.concat(
@@ -139,4 +139,4 @@ function mapStateToProps( state ){
     }
 }
 
-export default connect(mapStateToProps)(RegisterLogin);
+export default connect(mapStateToProps)(Login);
